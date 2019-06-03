@@ -17,6 +17,7 @@
         <input name="operand2" value="<?= $operand2 ?>">
         <button type="submit">=</button>
         <?=$result ?>
+
     </form>
 </body>
 </html>

@@ -1,14 +1,18 @@
 <?php
 
-    $result = '';
-    $operand1 = '';
-    $operator = '';
-    $operand2 = '';
+    require 'functions.php';
+
+
+    $firstName = '';
+    $lastName = '';
+    $email = '';
+    $password = '';
+    $message = '';
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
-        $parametrs = ['operand1', 'operator', 'operand2'];
+        $parametrs = ['firstName', 'lastName', 'email', 'password'];
 
         foreach ($parametrs as $parametr) {
             if (empty($_POST[$parametr])) {
@@ -16,30 +20,17 @@
             }
         }
 
-        $operand1 = floatval($_POST['operand1']);
-        $operand2 = floatval($_POST['operand2']);
-        $operator = $_POST['operator'];
+        $firstName = $_POST['firstName'];
+        $lastName = $_POST['lastName'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
 
-        switch ($operator) {
-            case '+':
-                $result = $operand1 + $operand2;
-                break;
-
-            case '-':
-                $result = $operand1 - $operand2;
-                break;
-
-            case '*':
-                $result = $operand1 * $operand2;
-                break;
-
-            case '/':
-                $result = $operand1 / $operand2;
-                break;
-            default:
-                die('Неверный оператор:' . $operator);
+        if (saveUser($firstName, $lastName, $email, $password)) {
+            $message = 'Пользователь зерегистрирован';
+        } else {
+           $message = 'ошибка регистрации пользователя';
         }
-        //echo $operand1 . '' . $operator . '' . $operand2 . '=' . $result;
+
     }
 
     include 'form.tpl.php';

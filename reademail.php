@@ -1,6 +1,4 @@
 <?php
-<table>
-    <tr>
 
 $fp = fopen("user.txt", 'r');
 if ($fp)

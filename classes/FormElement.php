@@ -14,9 +14,15 @@
         private $name;
 
         /**
-         * @var
+         * @var string
          */
         private $label;
+
+        /**
+         * @var string
+         */
+
+        protected $value;
 
         public function __construct(string $name, string $label)
         {
@@ -31,6 +37,22 @@
 
         public function getLabel(): string{
             return $this->label;
+        }
+
+        /**
+         * @return string
+         */
+        public function getValue(): string
+        {
+            return $this->value;
+        }
+
+        /**
+         * @param string $value
+         */
+        public function setValue(string $value): void
+        {
+            $this->value = $value;
         }
 
         abstract public function render(): string;

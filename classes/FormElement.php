@@ -24,10 +24,21 @@
 
         protected $value;
 
-        public function __construct(string $name, string $label)
+        /**
+         * @var bool
+         */
+        protected $required = false;
+
+        /**
+         * @var string
+         */
+        protected $error = '';
+
+        public function __construct(string $name, string $label, bool $required = false)
         {
             $this->name = $name;
             $this->label = $label;
+            $this->required = $required;
         }
 
         public function getName(): string
@@ -52,11 +63,21 @@
          */
         public function setValue(string $value): void
         {
+
             $this->value = $value;
+
+            if (empty($value) && $this->required){
+                $this->error = 'Поле не должно быть пустым';
+            }
         }
 
+        /**
+         * @return string
+         */
+        public function getError(): string
+        {
+            return $this->error;
+        }
         abstract public function render(): string;
-
-
 
     }

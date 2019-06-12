@@ -10,10 +10,10 @@
 
     $message = '';
     $form = new Form();
-    $form->add (new InputElement('first_name', 'Имя'));
-    $form->add (new InputElement('last_name', 'Фамилия'));
-    $form->add(new EmailElement('email','Email'));
-    $form->add(new PasswordElement('password', 'пароль'));
+    $form->add (new InputElement('first_name', 'Имя', true));
+    $form->add (new InputElement('last_name', 'Фамилия', true));
+    $form->add(new EmailElement('email','Email', true));
+    $form->add(new PasswordElement('password', 'пароль', true));
     $form->add(new ButtonElement('submit', 'Зарегистрировать'));
     $form->handleRequest();
 

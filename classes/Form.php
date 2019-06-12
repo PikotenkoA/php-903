@@ -26,6 +26,8 @@ class Form
 
     private $isSumitted = false;
 
+
+
     public function __construct(string $method = 'post')
 
     {
@@ -45,7 +47,7 @@ class Form
 
     public function render()
     {
-        $html = '<form>';
+        $html = sprintf('<form method="%s">', $this->method);
 
         foreach ($this->elements as $element) {
 
@@ -65,6 +67,14 @@ class Form
             if (isset($data[$element->getName()])) {
                 $this->isSumitted = true;
                 $element->setValue($data[$element->getName()]);
+
+            }
+        }
+
+        foreach ($this->elements as $element) {
+            if ($element->getError()){
+                $this->isSumitted=false;
+                break;
             }
         }
     }
